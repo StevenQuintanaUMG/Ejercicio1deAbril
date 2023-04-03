@@ -1,33 +1,56 @@
 ﻿void matriz()
 {
-    string[] nombre = new string[5];
+    uint N;
 
-    for (int i = 0; i < 5;  i++) {
-        Console.WriteLine("\nIngrese el nombre: " + (i+1));
-        nombre[i] = Console.ReadLine();
-    }
-
-    int[] notas = new int[nombre.Length];
-
-    for (int i = 0; i < nombre.Length; i++)
+    do
     {
-        Console.WriteLine("\nIngrese la nota de " + nombre[i]);
-        notas[i] = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Ola ingrese el numero de notas que desea registrar: ");
+
+    } while (!uint.TryParse(Console.ReadLine(), out N)||N < 50);
+
+    string[] nombre = new string[N];
+    uint[] notas = new uint[N];
+
+    for (uint i = 0; i < N; i++) {
+
+        Console.Clear();
+
+        Console.Write("\nIngrese el nombre " + (i + 1) + "\n> ");
+        nombre[i] = Console.ReadLine();
+
+        do
+        {
+            Console.Write("\nIngrese la nota de " + nombre[i] + "\n> ");
+
+        } while (!uint.TryParse(Console.ReadLine(), out notas[i]) || (notas[i] > 100));
+
     }
 
-    int max = 0;
-    int num = 0;
+    uint max = 0;
+    uint min = 100;
+    uint num_max = 0;
+    uint num_min = 0;
 
-    for(int i = 0; i < notas.Length; i++)
+    for (uint i = 0; i < N; i++)
     {
         if(notas[i] > max)
         {
             max = notas[i];
-            num = i;
+            num_max = i;
+        }
+
+        if (notas[i] < min)
+        {
+            min = notas[i];
+            num_min = i;
         }
     }
 
-    Console.WriteLine("\nLa nota mayor es de: " + nombre[num] + " con " + max);
+    Console.Clear();
+    Console.WriteLine("\nLa nota mayor es de " + nombre[num_max] + " con " + max);
+    Console.WriteLine("La nota menor es de " + nombre[num_min] + " con " + min);
+
 }
 
 matriz();
