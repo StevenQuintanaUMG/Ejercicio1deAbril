@@ -7,7 +7,8 @@
 
         Console.Write("Ola ingrese el numero de notas que desea registrar: ");
 
-    } while (!uint.TryParse(Console.ReadLine(), out N)||N < 50);
+    } while (!uint.TryParse(Console.ReadLine(), out N)||N >
+    50);
 
     string[] nombre = new string[N];
     uint[] notas = new uint[N];
